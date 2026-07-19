@@ -1,0 +1,43 @@
+{
+  "system": "Gothic Phoenix AI Artist",
+  "version": "0.2.0",
+  "timezone": "America/Los_Angeles",
+  "approval_required_before_publish": true,
+  "weekly_mix": {
+    "still_posts": 4,
+    "video_reels": 3,
+    "daily_stories": true,
+    "interactive_stories": 1,
+    "narrative_or_lore_videos": 1
+  },
+  "drive": {
+    "root_folder_id": "1COg0yKDEeCeruOAYmRb4rbVKgFuw_bR6",
+    "approved_folder_id": "11-J3xSHS1xt9B631MAbAb-19iaqhWbz4",
+    "published_folder_id": "1ZYcdZ7Z2h_4CGldTIUvqSqYhii__Jyjh",
+    "analytics_folder_id": "10vS8aFPihlMFUv0VJIy-sugBmdRwpwFG"
+  },
+  "notion": {
+    "command_center_page_id": "3a29b3e1-5599-81c0-8964-d073ddc576e9",
+    "content_tracker_data_source": "23ae602c-d62b-46e8-9d3a-6f0f5636fe0e",
+    "art_review_data_source": "36b7ff4a-2e9c-46e0-ab1e-4711972c5234",
+    "tool_registry_data_source": "afb0325b-8015-432f-9a6c-f4378cf3d2ed",
+    "improvement_log_data_source": "ed0b8e3b-6ed9-4585-bba2-27e593b405a7"
+  },
+  "quality": {
+    "publish_threshold": 85,
+    "golden_reference_threshold": 90,
+    "max_revision_attempts": 3,
+    "critical_defect_override": true
+  },
+  "publishing": {
+    "provider": "instagram_graph_api",
+    "enabled": false,
+    "verification_required": true
+  },
+  "video": {
+    "cinematic_provider": null,
+    "enabled": false,
+    "default_format": "1080x1920",
+    "default_fps": 30
+  }
+}
