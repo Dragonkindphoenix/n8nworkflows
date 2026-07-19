@@ -1,0 +1,36 @@
+{
+  "name": "Gothic Phoenix Daily Production Cycle",
+  "active": false,
+  "settings": {"timezone": "America/Los_Angeles", "executionOrder": "v1"},
+  "nodes": [
+    {"name": "Daily Trigger", "type": "n8n-nodes-base.scheduleTrigger", "typeVersion": 1.2, "position": [0, 0], "parameters": {"rule": {"interval": [{"field": "days", "daysInterval": 1, "triggerAtHour": 9}]}}},
+    {"name": "Load System Configuration", "type": "n8n-nodes-base.set", "typeVersion": 3.4, "position": [240, 0], "parameters": {"assignments": {"assignments": [{"name": "status", "type": "string", "value": "CONFIGURE_CREDENTIALS_BEFORE_ACTIVATION"}]}}},
+    {"name": "Notion Select Daily Record", "type": "n8n-nodes-base.notion", "typeVersion": 2.2, "position": [480, 0], "parameters": {}},
+    {"name": "Generate Creative Package", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [720, 0], "parameters": {}},
+    {"name": "Store Candidates in Drive", "type": "n8n-nodes-base.googleDrive", "typeVersion": 3, "position": [960, 0], "parameters": {}},
+    {"name": "Technical QA", "type": "n8n-nodes-base.executeCommand", "typeVersion": 1, "position": [1200, -100], "parameters": {"command": "python3 scripts/validate_asset.py --input {{$json.filePath}}"}},
+    {"name": "Creative Critique", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [1200, 100], "parameters": {}},
+    {"name": "Quality Gate", "type": "n8n-nodes-base.if", "typeVersion": 2.2, "position": [1440, 0], "parameters": {"conditions": {"number": [{"value1": "={{$json.overallScore}}", "operation": "largerEqual", "value2": 85}]}}},
+    {"name": "Human Approval Required", "type": "n8n-nodes-base.wait", "typeVersion": 1.1, "position": [1680, 0], "parameters": {}},
+    {"name": "Instagram Graph Publish", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [1920, 0], "parameters": {"disabled": true}},
+    {"name": "Verify Publication", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [2160, 0], "parameters": {"disabled": true}},
+    {"name": "Schedule Metric Checks", "type": "n8n-nodes-base.set", "typeVersion": 3.4, "position": [2400, 0], "parameters": {}},
+    {"name": "Update Notion Learning", "type": "n8n-nodes-base.notion", "typeVersion": 2.2, "position": [2640, 0], "parameters": {}}
+  ],
+  "connections": {
+    "Daily Trigger": {"main": [[{"node": "Load System Configuration", "type": "main", "index": 0}]]},
+    "Load System Configuration": {"main": [[{"node": "Notion Select Daily Record", "type": "main", "index": 0}]]},
+    "Notion Select Daily Record": {"main": [[{"node": "Generate Creative Package", "type": "main", "index": 0}]]},
+    "Generate Creative Package": {"main": [[{"node": "Store Candidates in Drive", "type": "main", "index": 0}]]},
+    "Store Candidates in Drive": {"main": [[{"node": "Technical QA", "type": "main", "index": 0}, {"node": "Creative Critique", "type": "main", "index": 0}]]},
+    "Technical QA": {"main": [[{"node": "Quality Gate", "type": "main", "index": 0}]]},
+    "Creative Critique": {"main": [[{"node": "Quality Gate", "type": "main", "index": 0}]]},
+    "Quality Gate": {"main": [[{"node": "Human Approval Required", "type": "main", "index": 0}], [{"node": "Generate Creative Package", "type": "main", "index": 0}]]},
+    "Human Approval Required": {"main": [[{"node": "Instagram Graph Publish", "type": "main", "index": 0}]]},
+    "Instagram Graph Publish": {"main": [[{"node": "Verify Publication", "type": "main", "index": 0}]]},
+    "Verify Publication": {"main": [[{"node": "Schedule Metric Checks", "type": "main", "index": 0}]]},
+    "Schedule Metric Checks": {"main": [[{"node": "Update Notion Learning", "type": "main", "index": 0}]]}
+  },
+  "meta": {"templateCredsSetupCompleted": false, "warning": "Scaffold only. Nodes requiring credentials are intentionally unconfigured and publishing is disabled."},
+  "versionId": "gothic-phoenix-v0.2.0"
+}
