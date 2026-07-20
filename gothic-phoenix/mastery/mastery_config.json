@@ -1,0 +1,40 @@
+{
+  "program_start": "2026-07-20",
+  "target_verified_hours": 10000,
+  "credit_policy": {
+    "requires_named_weakness": true,
+    "requires_saved_artifact": true,
+    "requires_formal_review": true,
+    "requires_correction": true,
+    "requires_before_after_comparison": true,
+    "requires_saved_lesson": true,
+    "count_passive_generation": false,
+    "count_idle_compute": false,
+    "count_parallel_agent_hours_as_elapsed_hours": false,
+    "allow_retroactive_credit": false
+  },
+  "curriculum_hours": {
+    "visual_fundamentals": 1200,
+    "composition_camera": 900,
+    "light_color": 900,
+    "anatomy_character": 900,
+    "environments_architecture": 800,
+    "materials_effects": 600,
+    "art_history_analysis": 800,
+    "ideation_worldbuilding": 900,
+    "image_production": 900,
+    "video_cinematic_storytelling": 900,
+    "critique_revision": 700,
+    "audience_commercial_practice": 500
+  },
+  "benchmark_frequency_verified_hours": 250,
+  "benchmark_minimum_average": 90,
+  "benchmark_minimum_critical_score": 85,
+  "maximum_unchanged_failed_attempts": 3,
+  "retest_days": [7, 30, 90],
+  "notion": {
+    "practice_ledger_data_source": "6ff7b1a6-f634-4fb6-a0d5-0585f484611f",
+    "benchmark_registry_data_source": "5811586a-2185-4771-9349-c95b33aae52e",
+    "art_review_registry_data_source": "36b7ff4a-2e9c-46e0-ab1e-4711972c5234"
+  }
+}
